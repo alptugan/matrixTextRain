@@ -17,12 +17,17 @@
 </Matrix_Room>
 <OPTIONS>
 	<Matrix_Room>
-		<Show_Only_Texture>0</Show_Only_Texture>
+		<Show_Only_Texture>1</Show_Only_Texture>
 		<Enable_Depth_Sorting>1</Enable_Depth_Sorting>
-		<Set_Speed_Min_and_Max>1.40546, 4.32611</Set_Speed_Min_and_Max>
+		<Set_Speed_Min_and_Max>2.43628, 9.02207</Set_Speed_Min_and_Max>
 		<Trail_setup>
 			<Enable_Trail_Effect>1</Enable_Trail_Effect>
-			<Trail_Amount>3</Trail_Amount>
+			<Trail_Amount>10</Trail_Amount>
 		</Trail_setup>
+		<Char_Properties>
+			<Show_font_bounding_box>0</Show_font_bounding_box>
+			<Char_Color>0, 250, 70, 255</Char_Color>
+			<First_Char_Glow_Color>200, 255, 200, 255</First_Char_Glow_Color>
+		</Char_Properties>
 	</Matrix_Room>
 </OPTIONS>

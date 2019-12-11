@@ -18,6 +18,9 @@ void ofApp::setup(){
     settings.dpi = 72;
     settings.addRange({0x0021, 0x0040});
     settings.addRange({0x30A1, 0x3147});
+    //settings.contours = false;
+    
+    
     font.load(settings);
     
     // Setup textrain object

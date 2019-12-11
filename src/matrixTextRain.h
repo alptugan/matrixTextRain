@@ -20,7 +20,11 @@ private:
     // GUI
     ofParameter<bool> gShowTexture;
     ofParameter<bool> gEnableDepth;
+    ofParameter<bool> gEnableDebug;
+    ofParameter<ofColor> gColor;
+    ofParameter<ofColor> gGlowColor;
     ofParameterGroup guiTrailSetup;
+    ofParameterGroup guiChar;
     ofParameter<bool> gEnableTrail;
     ofParameter<int> gTrailAmount;
     ofParameter<glm::vec2> gSpeed;
@@ -71,6 +75,14 @@ public:
         
         gui.add(gSpeed.set("Set Speed Min and Max", glm::vec2(2,10), glm::vec2(1, 1), glm::vec2(12, 12)));
         
+        // CHAR GUI : Every single letter
+        guiChar.setName("Char Properties");
+        guiChar.add(gEnableDebug.set("Show font bounding box", false));
+        guiChar.add(gColor.set("Char Color", ofColor(0, 250, 70, 255), ofColor(0), ofColor(255)));
+        guiChar.add(gGlowColor.set("First Char Glow Color", ofColor(200, 255, 200, 255), ofColor(0), ofColor(255)));
+        gui.add(guiChar);
+        
+        // CHAR STREAM GUI : Every single column consisting random instances of matrixChar
         guiTrailSetup.setName("Trail setup");
         guiTrailSetup.add(gEnableTrail.set("Enable Trail Effect", true));
         guiTrailSetup.add(gTrailAmount.set("Trail Amount", 100, 0, 255));
@@ -88,6 +100,18 @@ public:
                 for(int i = 0; i < numStream; i++) {
                     stream[i].setRandomSpeedRange(round(gSpeed->x), round(gSpeed->y));
                 }
+            } else if(param.getName() == "Show font bounding box") {
+                for(int i = 0; i < numStream; i++) {
+                    stream[i].setDebugView(gEnableDebug);
+                }
+            } else if(param.getName() == "Char Color") {
+                for(int i = 0; i < numStream; i++) {
+                    stream[i].setStreamColor(gColor);
+                }
+            }else if(param.getName() == "First Char Glow Color") {
+                for(int i = 0; i < numStream; i++) {
+                    stream[i].setGlowingCharColor(gGlowColor);
+                }
             }
         }
         
@@ -95,7 +119,7 @@ public:
     
     void draw() {
         fps.setup("FPS ", ofToString(ofGetFrameRate()));
-        
+        ofPushStyle();
         // Begin fbo to create texture
         fbo.begin();
             if(gEnableTrail) {
@@ -111,6 +135,10 @@ public:
             }
         fbo.end();
         
+        
+        //glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+        
         // Enable mesh depth sorting
         if(gEnableDepth) ofEnableDepthTest();
         
@@ -125,9 +153,11 @@ public:
                 fbo.draw(0, 0);
         }
         
-            // Disable mesh depth sorting
+        // Disable mesh depth sorting
         if(gEnableDepth) ofDisableDepthTest();
         
+        //glDisable(GL_BLEND);
+        ofPopStyle();
     }
 };
 

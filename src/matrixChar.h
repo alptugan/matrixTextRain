@@ -11,8 +11,6 @@
 class matrixChar {
 private:
     uint32_t theChar;
-    
-    float lastTriggerTime;
 public:
     string alignment;
     int fontH,fontW;
@@ -60,30 +58,39 @@ public:
         
         ofPopStyle();
         ofPopMatrix();
-        
-        /*if(ofGetElapsedTimef() - lastTriggerTime > 0.05) {
-         generateRandomChar();
-         lastTriggerTime = ofGetElapsedTimef();
-         }*/
-        
     }
     
     void generateRandomChar() {
             // 65 - 90
-        int rangeSelector = round(ofRandom(0,1));
+        float rangeSelector = ofRandomf();
         
-        if(rangeSelector == 1) {
+        if(rangeSelector < 0.3) {
                 // Decimal range for matrix code nfi.ttf
                 //theChar = round(ofRandom(96, 126));
             
                 // Decimal range for Arial Unicode.ttf
             theChar = round(ofRandom(33, 64));
-        }else{
+        }else if(rangeSelector < 0.4){
                 // Decimal range for matrix code nfi.ttf
                 //theChar = round(ofRandom(33, 63));
             
-                // Decimal range for Arial Unicode.ttf
-            theChar = round(ofRandom(12449, 12615));
+            // Decimal range for Arial Unicode.ttf
+            /* Exclude dead char decimals
+             12544: ㄀
+             12545: ㄁
+             12546: ㄂
+             12547: ㄃
+             12548: ㄄
+             12589: ㄭ
+             12590: ㄮ
+             12591: ㄯ
+             12592: ㄰
+             */
+            theChar = round(ofRandom(12449, 12543));
+        } else if(rangeSelector < 0.5){
+            theChar = round(ofRandom(12549, 12588));
+        } else {
+            theChar = round(ofRandom(12593, 12615));
         }
         
         

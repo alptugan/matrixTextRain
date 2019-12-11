@@ -14,6 +14,7 @@
 class matrixCharStream {
 private:
     vector<matrixChar> letters;
+    ofColor blockColor;
     int minimum, maximum;
     int numLetters, tempX;
     int currentStreamH;
@@ -30,6 +31,27 @@ public:
         speed = (ofRandom(this->minimum, this->maximum));
     }
     
+    void setDebugView(bool isDebug) {
+        for (int i = 0; i < numLetters; i++) {
+            letters[i].isDebug = isDebug;
+        }
+    }
+    
+    void setStreamColor(ofColor color) {
+        for (int i = 0; i < numLetters; i++) {
+            if( i != numLetters - 1)
+            {
+                float alpha = ofMap(i, 0, numLetters - 1, 0, 255);
+                letters[i].color = ofColor(color.r, color.g, color.b, alpha);
+            }
+        }
+    }
+    
+    void setGlowingCharColor(ofColor color) {
+        blockColor = color;
+        letters[numLetters - 1].color = blockColor;
+    }
+    
     void setup(int tempX, int fontW, int fontH) {
         this->tempX = tempX;
         this->fontW = fontW;
@@ -37,6 +59,7 @@ public:
         this->minimum = 2;
         this->maximum = 10;
         
+        blockColor     = ofColor(200, 255, 200, 255);
         currentStreamH = 0;
         
         // Generate random speed for each stream block
@@ -55,15 +78,14 @@ public:
             
                 // calculate color Alpha
             if( i != numLetters - 1)
-                {
+            {
                 float alpha = ofMap(i, 0, numLetters - 1, 0, 255);
-                letters[i].color = ofColor(0, 250, 80, alpha);
-                }
+                letters[i].color = ofColor(letters[i].color.r, letters[i].color.g, letters[i].color.b, alpha);
+            }
         }
-            // set the last letter to white to create shine effect
-        letters[numLetters - 1].color = ofColor(200,255,200, 255);
         
-        
+        // set the last letter to white to create shine effect
+        letters[numLetters - 1].color = blockColor;
     }
     
     
