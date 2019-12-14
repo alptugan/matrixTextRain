@@ -9,7 +9,10 @@
 #define matrixTextRain_h
 
 #include "ofMain.h"
+static ofTrueTypeFont font;
 #include "matrixCharStream.h"
+
+
 
 class matrixTextRain {
 private:
@@ -39,16 +42,34 @@ public:
     ofParameterGroup gui;
     
     void setup() {
+        // Load global font and size that includes Katana characters
+        ofTrueTypeFontSettings settings("Arial Unicode.ttf", 12);
+        
+        settings.antialiased = true;
+        settings.dpi = 72;
+        settings.addRange({0x0021, 0x0040});
+        settings.addRange({0x30A1, 0x3147});
+        settings.contours = false;
+            //settings.contours = false;
+            
+        
+        font.load(settings);
+        
         fontW = font.stringWidth("サ"); // get width from a random char from unicode range
         fontH = font.stringHeight("サ"); // get height from a random char from unicode range
         
         numStream = round(ofGetWidth() / fontW);
         stream.resize(numStream);
         
+        int totalFontObj = 0;
         for(int i = 0; i < numStream; i++) {
             stream[i].setup(i * fontW, fontW, fontH);
+            totalFontObj += stream[i].letters.size();
+            
         }
         
+        
+        ofLog() << "Number of Letters : " << totalFontObj;
         
         // Fbo allocation to display more trails
         fbo.allocate(ofGetWidth(), ofGetHeight(),GL_RGBA,4);

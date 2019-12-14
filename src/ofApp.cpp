@@ -11,17 +11,7 @@ void ofApp::setup(){
     ofSetBackgroundColor(0);
     
     
-    // Load global font and size that includes Katana characters
-    ofTrueTypeFontSettings settings("Arial Unicode.ttf", 12);
     
-    settings.antialiased = true;
-    settings.dpi = 72;
-    settings.addRange({0x0021, 0x0040});
-    settings.addRange({0x30A1, 0x3147});
-    //settings.contours = false;
-    
-    
-    font.load(settings);
     
     // Setup textrain object
     textRain.setup();
@@ -57,6 +47,8 @@ void ofApp::keyPressed(ofKeyEventArgs & key){
     //ofLog() << key.key << " :: " << key.keycode;
     if(key.key == 'g') {
         isShowGui = !isShowGui;
+    }else if(key.key == 'f') {
+        ofToggleFullscreen();
     }
 }
 

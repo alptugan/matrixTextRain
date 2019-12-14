@@ -252,6 +252,7 @@
 		ECF8674C7975F1063C5E30CA /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxGuiGroup.cpp; path = ../../../addons/ofxGui/src/ofxGuiGroup.cpp; sourceTree = SOURCE_ROOT; };
 		F17D56E423990020004FA525 /* matrixChar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrixChar.h; sourceTree = "<group>"; };
 		F17D56E523990063004FA525 /* matrixCharStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrixCharStream.h; sourceTree = "<group>"; };
+		F17DD24B23A5236C00E5E41F /* settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = settings.xml; path = bin/data/settings.xml; sourceTree = SOURCE_ROOT; };
 		F78C424233E08F5A83DC338F /* ofxFilikaImageButton.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxFilikaImageButton.h; path = ../../../addons/ofxFilika/src/ofxFilikaImageButton.h; sourceTree = SOURCE_ROOT; };
 		FBAFC7140E3BA53FB6A82994 /* ofxFilikaMultiTouchEvents.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxFilikaMultiTouchEvents.h; path = ../../../addons/ofxFilika/src/ofxFilikaMultiTouchEvents.h; sourceTree = SOURCE_ROOT; };
 		FC1C6155F049D14AE14E917D /* ofxFilikaRS232.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxFilikaRS232.h; path = ../../../addons/ofxFilika/src/ofxFilikaRS232.h; sourceTree = SOURCE_ROOT; };
@@ -641,6 +642,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F17DD24B23A5236C00E5E41F /* settings.xml */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,

@@ -19,6 +19,8 @@ public:
     int x,y,z;
     int index;
     bool isDebug;
+    ofVboMesh mesh;
+    ofFbo fbo;
     
     void setup(int tempX, int index, int fontW, int fontH) {
         
@@ -41,14 +43,27 @@ public:
         ofPushMatrix();
         ofTranslate(x, y, z);
         ofPushStyle();
-        ofFill();
+        //ofFill();
         ofSetColor(color);
+        
+        /*for(int i = 0; i < mesh.getVertices().size(); i++) {
+         ofLog() << mesh.getVertices()[i];
+         }*/
         
         if(alignment == "center") {
             font.drawString(letter, -fontW * 0.5, fontH * 0.5);
         } else if(alignment == "left") {
             font.drawString(letter, 0, fontH - 2);
         }
+        
+        //2- Fbo
+        //fbo.draw(0,fontH - 2);
+        
+        //1- Vbo Mesh
+        
+        font.getFontTexture().bind();
+        mesh.draw();
+        font.getFontTexture().unbind();
         
         if(isDebug) {
             ofNoFill();
@@ -100,6 +115,53 @@ public:
         ofUTF8Append(letter, theChar);
             //letter= ofToString(theChar);
             //letter = "サッカ";
+        
+        
+        //ofLog() << mesh.getVertices().size();
+        /*fbo.allocate(fontW, fontH, GL_RGBA, 4);
+        fbo.begin();
+        ofClear(0,0);
+        ofFill();
+        ofSetColor(color);
+        font.drawString(letter, 0, 0);
+        fbo.end();*/
+        
+        
+        /*mesh.clear();
+        mesh = font.getStringMesh(letter,0, 0, false);
+            // Includes 4 vertices
+            // 1st vertex position - top-left
+        mesh.getVertices()[0].x = x;
+        mesh.getVertices()[0].y = y;
+        
+            // 2nd vertex position top-right
+        mesh.getVertices()[1].x = x + fontW;
+        mesh.getVertices()[1].y = y;
+        
+            // 3rd vertex position bottom-right
+        mesh.getVertices()[2].x = x + fontW;
+        mesh.getVertices()[2].y = y + fontH;
+        
+            // 4th vertex position bottom-left
+        mesh.getVertices()[2].x = x;
+        mesh.getVertices()[2].y = y + fontH;
+        
+        // Includes 4 vertices
+        // 1st vertex position - top-left
+        /*mesh.getVertices()[0].x = x;
+        mesh.getVertices()[0].y = y;
+        
+        // 2nd vertex position top-right
+        mesh.getVertices()[1].x = x + fontW;
+        mesh.getVertices()[1].y = y;
+        
+        // 3rd vertex position bottom-right
+        mesh.getVertices()[2].x = x + fontW;
+        mesh.getVertices()[2].y = y + fontH;
+        
+        // 4th vertex position bottom-left
+        mesh.getVertices()[2].x = x;
+        mesh.getVertices()[2].y = y + fontH;*/
         
     }
 };

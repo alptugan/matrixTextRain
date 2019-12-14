@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-static ofTrueTypeFont font;
-
 #include "ofxGui.h"
 //#include "ofxFilikaUtils.h"
 #include "matrixTextRain.h"

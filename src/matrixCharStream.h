@@ -13,14 +13,16 @@
 
 class matrixCharStream {
 private:
-    vector<matrixChar> letters;
+    
     ofColor blockColor;
     int minimum, maximum;
     int numLetters, tempX;
     int currentStreamH;
     int speed;
     int fontW, fontH;
+    ofVboMesh vboMesh;
 public:
+    vector<matrixChar> letters;
     int getStreamWidth() {
         return letters[0].fontW;
     }
